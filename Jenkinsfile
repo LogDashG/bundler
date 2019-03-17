@@ -22,9 +22,19 @@ timeout(time: 1, unit: 'HOURS') {
                 checkout scm
             }
             stage("📦 Bundler") {
-                sh "gem list bundler"
-                sh "which bundle"
-                sh "bundle --version"
+                // https://jenkins.io/doc/pipeline/steps/workflow-durable-task-step/#sh-shell-script
+                sh(
+                    script: "gem list bundler",
+                    label: "💎 List gems"
+                )
+                sh(
+                    script: "which bundle",
+                    label: "❓ Which"
+                )
+                sh(
+                    script: "bundle --version",
+                    label: "🏃🏻‍♂️ Rund bundler"
+                )
             }
         }
     }
