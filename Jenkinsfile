@@ -52,8 +52,20 @@ try {
     }
 }
 catch (Exception ex) {
-    mail to: "${MAIL_TO}",
-         subject: "[FAILURE]  💩  😵  [JENKINS] ${env.JOB_NAME} - Build # ${env.BUILD_NUMBER} - [FAILURE]!  👻  😭  ",
-         body: "${env.JOB_NAME} - Build # ${env.BUILD_NUMBER} - FAILURE (${ex.message})!"
+    String jobName = env.JOB_NAME
+    String buildNumber = env.BUILD_NUMBER
+
+    String subject = "👷🏻‍♂️ [FAILURE] $jobName - Build #$buildNumber"
+    String body = """$jobName
+                |Build #${buildNumber} - FAILURE
+                |
+                |${ex.message}
+                |
+                |${env.BUILD_URL}
+                |""".stripMargin()
+
+    mail to: MAIL_TO,
+         subject: subject,
+         body: body
     throw ex
 }
