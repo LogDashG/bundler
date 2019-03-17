@@ -59,9 +59,11 @@ catch (Exception ex) {
     String body = """$jobName
                 |Build #${buildNumber} - FAILURE
                 |
+                |${env.BUILD_URL}
+                |
                 |${ex.message}
                 |
-                |${env.BUILD_URL}
+                |${env.BUILD_URL}/console
                 |""".stripMargin()
 
     mail to: MAIL_TO,
