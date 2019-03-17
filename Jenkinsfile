@@ -9,6 +9,7 @@
 import jenkins.model.*
 
 def MAIL_TO = JenkinsLocationConfiguration.get().getAdminAddress()
+echo "MAIL_TO: $MAIL_TO"
 
 properties([
     // Don't trigger this job when changes are found from branch indexing.
