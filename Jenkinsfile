@@ -41,6 +41,10 @@ try {
                         script: "bundle --version",
                         label: "🏃🏻‍♂️ Run bundler"
                     )
+                    sh(
+                        script: "false",
+                        label: "⛔ Failure"
+                    )
                 }
             }
         }
